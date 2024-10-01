@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const chunk = decoder.decode(value);
             const lines = chunk.split('\n');
+
+
             for (const line of lines) {
                 if (line.startsWith('data: ')) {
                     const token = line.slice(6);
@@ -43,16 +45,20 @@ document.addEventListener('DOMContentLoaded', () => {
                         displayCatImages(token.slice(20).split(', '));
                     } else {
                         botResponse += token;
-                        updateBotMessage(botResponse);
                     }
+                } else {
+                    botResponse += line;
                 }
             }
+            updateBotMessage(botResponse);
+
         }
 
         return botResponse;
     }
 
     function addMessage(sender, message) {
+        console.log(message)
         const messageElement = document.createElement('div');
         messageElement.classList.add('message', sender);
         messageElement.textContent = message;

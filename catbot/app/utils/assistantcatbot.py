@@ -89,7 +89,6 @@ def chat_with_cat_bot(message, get_image):
             if message.role == "assistant":
                 for content in message.content:
                     if content.type == "text":
-                        print(content.text.value)
                         yield content.text.value
 
     except Exception as e:
